@@ -1,0 +1,58 @@
+[
+  {
+    "id": "case-converter",
+    "title": "Case Converter",
+    "category": "Text",
+    "icon": "fa-font",
+    "description": "Text ko UPPERCASE, lowercase ya Sentence case mein badlein.",
+    "isAI": false
+  },
+  {
+    "id": "ai-story-writer",
+    "title": "AI Story Writer",
+    "category": "AI Tools",
+    "icon": "fa-robot",
+    "description": "Sirf ek topic dein aur AI aapke liye kahani likhega.",
+    "isAI": true
+  },
+  {
+    "id": "password-gen",
+    "title": "Password Generator",
+    "category": "Security",
+    "icon": "fa-lock",
+    "description": "Strong aur secure passwords generate karein.",
+    "isAI": false
+  },
+  {
+    "id": "unit-converter",
+    "title": "Unit Converter",
+    "category": "Utility",
+    "icon": "fa-ruler",
+    "description": "KM to Miles, KG to Grams jaise units convert karein.",
+    "isAI": false
+  },
+  {
+    "id": "ai-code-fixer",
+    "title": "AI Code Fixer",
+    "category": "AI Tools",
+    "icon": "fa-code",
+    "description": "Apne buggy code ko AI se sahi karwayein.",
+    "isAI": true
+  },
+  {
+    "id": "image-compressor",
+    "title": "Image Compressor",
+    "category": "Image",
+    "icon": "fa-file-image",
+    "description": "Image ki quality kharab kiye bina size kam karein.",
+    "isAI": false
+  },
+  {
+    "id": "word-counter",
+    "title": "Word Counter",
+    "category": "Text",
+    "icon": "fa-calculator",
+    "description": "Words aur characters count karein.",
+    "isAI": false
+  }
+]
