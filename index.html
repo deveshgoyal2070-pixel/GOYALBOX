@@ -7,57 +7,108 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .tool-card:hover { transform: translateY(-5px); transition: 0.3s; }
+        .tool-card { transition: all 0.3s ease; }
+        .tool-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        #toolsGrid { min-height: 400px; }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-50 font-sans">
 
-    <header class="bg-blue-600 text-white p-6 shadow-lg text-center">
-        <h1 class="text-4xl font-bold">GoyalBox</h1>
-        <p class="mt-2 text-blue-100">500+ Free AI & Daily Utility Tools</p>
+    <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-10 shadow-xl text-center">
+        <h1 class="text-5xl font-extrabold tracking-tight">GoyalBox</h1>
+        <p class="mt-3 text-blue-100 text-lg">Duniya ke 500+ Behtareen AI aur Daily Use Tools - Sab Kuch Free!</p>
         
-        <div class="mt-6 max-w-xl mx-auto relative">
-            <input type="text" id="toolSearch" placeholder="Search 500+ tools (e.g. AI Writer, Case Converter)..." 
-                   class="w-full p-4 rounded-full text-gray-800 focus:outline-none shadow-md">
-            <i class="fa fa-search absolute right-5 top-5 text-gray-400"></i>
+        <div class="mt-8 max-w-2xl mx-auto relative">
+            <input type="text" id="toolSearch" onkeyup="searchTools()" placeholder="Search tools (e.g. AI Writer, Case Converter)..." 
+                   class="w-full p-5 pl-12 rounded-2xl text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-2xl transition-all">
+            <i class="fa fa-search absolute left-5 top-6 text-gray-400"></i>
         </div>
     </header>
 
-    <main class="container mx-auto p-8">
-        <h2 class="text-2xl font-semibold mb-6 text-gray-700">Trending Tools</h2>
+    <main class="container mx-auto px-6 py-12">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">Explore Tools</h2>
+            <span id="toolCount" class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold">Loading...</span>
+        </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="toolsGrid">
-            
-            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
-                <div class="text-blue-500 text-3xl mb-4"><i class="fa fa-font"></i></div>
-                <h3 class="font-bold text-lg">Case Converter</h3>
-                <p class="text-gray-500 text-sm mt-2">Change text to UPPERCASE, lowercase, etc.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="toolsGrid">
             </div>
 
-            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
-                <div class="text-purple-500 text-3xl mb-4"><i class="fa fa-robot"></i></div>
-                <h3 class="font-bold text-lg">AI Text Generator</h3>
-                <p class="text-gray-500 text-sm mt-2">Generate content using Free AI APIs.</p>
-            </div>
-
-            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
-                <div class="text-green-500 text-3xl mb-4"><i class="fa fa-lock"></i></div>
-                <h3 class="font-bold text-lg">Secure Password</h3>
-                <p class="text-gray-500 text-sm mt-2">Create strong random passwords instantly.</p>
-            </div>
-
-            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
-                <div class="text-red-500 text-3xl mb-4"><i class="fa fa-image"></i></div>
-                <h3 class="font-bold text-lg">Image Resizer</h3>
-                <p class="text-gray-500 text-sm mt-2">Compress and resize images online.</p>
-            </div>
-
+        <div id="noResults" class="hidden text-center py-20">
+            <i class="fa fa-search-minus text-6xl text-gray-300 mb-4"></i>
+            <p class="text-xl text-gray-500">Oops! Is naam ka koi tool nahi mila. Kuch aur search karke dekhein?</p>
         </div>
     </main>
 
-    <footer class="mt-20 p-10 bg-gray-800 text-white text-center">
-        <p>&copy; 2026 GoyalBox. All Rights Reserved.</p>
+    <footer class="bg-gray-900 text-gray-400 py-12 text-center border-t border-gray-800">
+        <div class="mb-4">
+            <a href="#" class="mx-3 hover:text-white transition">About</a>
+            <a href="#" class="mx-3 hover:text-white transition">Privacy Policy</a>
+            <a href="#" class="mx-3 hover:text-white transition">Contact</a>
+        </div>
+        <p class="text-sm">&copy; 2026 <span class="text-white font-bold">GoyalBox</span>. Made for Creators.</p>
     </footer>
 
+    <script>
+        let allTools = [];
+
+        // 1. tools.json se data fetch karna
+        async function loadTools() {
+            try {
+                const response = await fetch('tools.json');
+                allTools = await response.json();
+                displayTools(allTools);
+                document.getElementById('toolCount').innerText = `${allTools.length} Tools Available`;
+            } catch (error) {
+                console.error("Error loading tools:", error);
+                document.getElementById('toolsGrid').innerHTML = "<p class='text-red-500 text-center w-full'>JSON file load nahi ho saki. Please check file name.</p>";
+            }
+        }
+
+        // 2. Tools ko Screen par dikhane ka function
+        function displayTools(tools) {
+            const grid = document.getElementById('toolsGrid');
+            const noResults = document.getElementById('noResults');
+            grid.innerHTML = "";
+
+            if (tools.length === 0) {
+                noResults.classList.remove('hidden');
+                grid.classList.add('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                grid.classList.remove('hidden');
+                
+                tools.forEach(tool => {
+                    const card = `
+                        <div class="tool-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 cursor-pointer flex flex-col items-start" onclick="window.location.href='tools/${tool.id}.html'">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-2xl ${tool.isAI ? 'bg-purple-100 text-purple-600' : 'bg-blue-100 text-blue-600'} text-2xl mb-6">
+                                <i class="fa ${tool.icon}"></i>
+                            </div>
+                            <h3 class="font-bold text-xl text-gray-800 mb-2">${tool.title}</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed">${tool.description}</p>
+                            <div class="mt-6 flex items-center text-xs font-bold uppercase tracking-wider ${tool.isAI ? 'text-purple-500' : 'text-blue-500'}">
+                                Open Tool <i class="fa fa-arrow-right ml-2"></i>
+                            </div>
+                        </div>
+                    `;
+                    grid.innerHTML += card;
+                });
+            }
+        }
+
+        // 3. Search Functionality
+        function searchTools() {
+            const query = document.getElementById('toolSearch').value.toLowerCase();
+            const filtered = allTools.filter(tool => 
+                tool.title.toLowerCase().includes(query) || 
+                tool.category.toLowerCase().includes(query) ||
+                tool.description.toLowerCase().includes(query)
+            );
+            displayTools(filtered);
+        }
+
+        // Page load hote hi tools dikhao
+        loadTools();
+    </script>
 </body>
 </html>
