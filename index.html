@@ -1,144 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GoyalBox - Free AI & Online Tools</title>
-
-<meta name="description" content="GoyalBox is a free collection of AI tools and useful online utilities. Explore 500+ tools for productivity, design, SEO, and development.">
-
-<style>
-
-body{
-font-family:Arial, sans-serif;
-margin:0;
-background:#f5f6fa;
-}
-
-header{
-background:#111;
-color:white;
-padding:20px;
-text-align:center;
-}
-
-.search-box{
-margin:30px auto;
-text-align:center;
-}
-
-input{
-padding:10px;
-width:300px;
-font-size:16px;
-}
-
-.container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-padding:20px;
-}
-
-.tool{
-background:white;
-padding:20px;
-border-radius:8px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
-}
-
-.tool a{
-text-decoration:none;
-color:#333;
-font-weight:bold;
-}
-
-footer{
-text-align:center;
-padding:20px;
-background:#111;
-color:white;
-margin-top:40px;
-}
-
-</style>
-
-<script>
-
-function searchTools(){
-
-let input = document.getElementById("search").value.toLowerCase()
-
-let tools = document.querySelectorAll(".tool")
-
-tools.forEach(tool => {
-
-if(tool.innerText.toLowerCase().includes(input))
-tool.style.display="block"
-else
-tool.style.display="none"
-
-})
-
-}
-
-</script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoyalBox - 500+ Free AI & Web Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tool-card:hover { transform: translateY(-5px); transition: 0.3s; }
+    </style>
 </head>
+<body class="bg-gray-100 font-sans">
 
-<body>
+    <header class="bg-blue-600 text-white p-6 shadow-lg text-center">
+        <h1 class="text-4xl font-bold">GoyalBox</h1>
+        <p class="mt-2 text-blue-100">500+ Free AI & Daily Utility Tools</p>
+        
+        <div class="mt-6 max-w-xl mx-auto relative">
+            <input type="text" id="toolSearch" placeholder="Search 500+ tools (e.g. AI Writer, Case Converter)..." 
+                   class="w-full p-4 rounded-full text-gray-800 focus:outline-none shadow-md">
+            <i class="fa fa-search absolute right-5 top-5 text-gray-400"></i>
+        </div>
+    </header>
 
-<header>
-<h1>GOYALBOX</h1>
-<p>500+ Free AI Tools & Online Utilities</p>
-</header>
+    <main class="container mx-auto p-8">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-700">Trending Tools</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="toolsGrid">
+            
+            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
+                <div class="text-blue-500 text-3xl mb-4"><i class="fa fa-font"></i></div>
+                <h3 class="font-bold text-lg">Case Converter</h3>
+                <p class="text-gray-500 text-sm mt-2">Change text to UPPERCASE, lowercase, etc.</p>
+            </div>
 
-<div class="search-box">
-<input type="text" id="search" onkeyup="searchTools()" placeholder="Search tools...">
-</div>
+            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
+                <div class="text-purple-500 text-3xl mb-4"><i class="fa fa-robot"></i></div>
+                <h3 class="font-bold text-lg">AI Text Generator</h3>
+                <p class="text-gray-500 text-sm mt-2">Generate content using Free AI APIs.</p>
+            </div>
 
-<div class="container">
+            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
+                <div class="text-green-500 text-3xl mb-4"><i class="fa fa-lock"></i></div>
+                <h3 class="font-bold text-lg">Secure Password</h3>
+                <p class="text-gray-500 text-sm mt-2">Create strong random passwords instantly.</p>
+            </div>
 
-<div class="tool">
-<a href="https://chat.openai.com" target="_blank">
-ChatGPT – AI Writing Assistant
-</a>
-</div>
+            <div class="tool-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 cursor-pointer">
+                <div class="text-red-500 text-3xl mb-4"><i class="fa fa-image"></i></div>
+                <h3 class="font-bold text-lg">Image Resizer</h3>
+                <p class="text-gray-500 text-sm mt-2">Compress and resize images online.</p>
+            </div>
 
-<div class="tool">
-<a href="https://remove.bg" target="_blank">
-Remove.bg – Background Remover
-</a>
-</div>
+        </div>
+    </main>
 
-<div class="tool">
-<a href="https://canva.com" target="_blank">
-Canva – Graphic Design Tool
-</a>
-</div>
-
-<div class="tool">
-<a href="#">
-Word Counter Tool
-</a>
-</div>
-
-<div class="tool">
-<a href="#">
-Image Compressor
-</a>
-</div>
-
-</div>
-
-<footer>
-
-<p>© 2026 GoyalBox</p>
-<p>Free AI Tools Directory</p>
-
-</footer>
+    <footer class="mt-20 p-10 bg-gray-800 text-white text-center">
+        <p>&copy; 2026 GoyalBox. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
