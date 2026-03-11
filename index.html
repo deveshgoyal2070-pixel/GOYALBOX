@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GoyalBox - Free AI & Online Tools</title>
+
+<meta name="description" content="GoyalBox is a free collection of AI tools and useful online utilities. Explore 500+ tools for productivity, design, SEO, and development.">
+
+<style>
+
+body{
+font-family:Arial, sans-serif;
+margin:0;
+background:#f5f6fa;
+}
+
+header{
+background:#111;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.search-box{
+margin:30px auto;
+text-align:center;
+}
+
+input{
+padding:10px;
+width:300px;
+font-size:16px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.tool{
+background:white;
+padding:20px;
+border-radius:8px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tool a{
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#111;
+color:white;
+margin-top:40px;
+}
+
+</style>
+
+<script>
+
+function searchTools(){
+
+let input = document.getElementById("search").value.toLowerCase()
+
+let tools = document.querySelectorAll(".tool")
+
+tools.forEach(tool => {
+
+if(tool.innerText.toLowerCase().includes(input))
+tool.style.display="block"
+else
+tool.style.display="none"
+
+})
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>GOYALBOX</h1>
+<p>500+ Free AI Tools & Online Utilities</p>
+</header>
+
+<div class="search-box">
+<input type="text" id="search" onkeyup="searchTools()" placeholder="Search tools...">
+</div>
+
+<div class="container">
+
+<div class="tool">
+<a href="https://chat.openai.com" target="_blank">
+ChatGPT – AI Writing Assistant
+</a>
+</div>
+
+<div class="tool">
+<a href="https://remove.bg" target="_blank">
+Remove.bg – Background Remover
+</a>
+</div>
+
+<div class="tool">
+<a href="https://canva.com" target="_blank">
+Canva – Graphic Design Tool
+</a>
+</div>
+
+<div class="tool">
+<a href="#">
+Word Counter Tool
+</a>
+</div>
+
+<div class="tool">
+<a href="#">
+Image Compressor
+</a>
+</div>
+
+</div>
+
+<footer>
+
+<p>© 2026 GoyalBox</p>
+<p>Free AI Tools Directory</p>
+
+</footer>
+
+</body>
+</html>
