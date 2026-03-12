@@ -1,58 +1,12 @@
 [
-  {
-    "id": "case-converter",
-    "title": "Case Converter",
-    "category": "Text",
-    "icon": "fa-font",
-    "description": "Text ko UPPERCASE, lowercase ya Sentence case mein badlein.",
-    "isAI": false
-  },
-  {
-    "id": "ai-story-writer",
-    "title": "AI Story Writer",
-    "category": "AI Tools",
-    "icon": "fa-robot",
-    "description": "Sirf ek topic dein aur AI aapke liye kahani likhega.",
-    "isAI": true
-  },
-  {
-    "id": "password-gen",
-    "title": "Password Generator",
-    "category": "Security",
-    "icon": "fa-lock",
-    "description": "Strong aur secure passwords generate karein.",
-    "isAI": false
-  },
-  {
-    "id": "unit-converter",
-    "title": "Unit Converter",
-    "category": "Utility",
-    "icon": "fa-ruler",
-    "description": "KM to Miles, KG to Grams jaise units convert karein.",
-    "isAI": false
-  },
-  {
-    "id": "ai-code-fixer",
-    "title": "AI Code Fixer",
-    "category": "AI Tools",
-    "icon": "fa-code",
-    "description": "Apne buggy code ko AI se sahi karwayein.",
-    "isAI": true
-  },
-  {
-    "id": "image-compressor",
-    "title": "Image Compressor",
-    "category": "Image",
-    "icon": "fa-file-image",
-    "description": "Image ki quality kharab kiye bina size kam karein.",
-    "isAI": false
-  },
-  {
-    "id": "word-counter",
-    "title": "Word Counter",
-    "category": "Text",
-    "icon": "fa-calculator",
-    "description": "Words aur characters count karein.",
-    "isAI": false
-  }
+  { "id": "case-converter", "title": "Case Converter", "category": "Text", "icon": "fa-font", "description": "Text ko UPPERCASE ya lowercase mein badlein.", "isAI": false },
+  { "id": "ai-writer", "title": "AI Content Writer", "category": "AI Tools", "icon": "fa-robot", "description": "AI se articles aur blogs likhwayein.", "isAI": true },
+  { "id": "word-counter", "title": "Word Counter", "category": "Text", "icon": "fa-calculator", "description": "Words aur characters count karein.", "isAI": false },
+  { "id": "password-gen", "title": "Password Generator", "category": "Security", "icon": "fa-lock", "description": "Secure passwords generate karein.", "isAI": false },
+  { "id": "unit-converter", "title": "Unit Converter", "category": "Utility", "icon": "fa-ruler", "description": "KM, Miles, KG convert karein.", "isAI": false },
+  { "id": "ai-image-gen", "title": "AI Image Generator", "category": "AI Tools", "icon": "fa-image", "description": "Text se image banayein.", "isAI": true },
+  { "id": "qr-gen", "title": "QR Code Maker", "category": "Utility", "icon": "fa-qrcode", "description": "Instant QR codes banayein.", "isAI": false },
+  { "id": "json-format", "title": "JSON Formatter", "category": "Developer", "icon": "fa-code", "description": "JSON ko readable banayein.", "isAI": false },
+  { "id": "yt-thumb", "title": "YT Thumbnail", "category": "Utility", "icon": "fa-youtube", "description": "YouTube thumbnails download karein.", "isAI": false },
+  { "id": "ai-grammar", "title": "AI Grammar Fixer", "category": "AI Tools", "icon": "fa-spell-check", "description": "Grammar theek karein AI se.", "isAI": true }
 ]
