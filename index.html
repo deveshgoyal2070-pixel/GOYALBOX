@@ -7,133 +7,169 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .tool-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #e5e7eb; }
-        .tool-card:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: 0 15px 30px rgba(59, 130, 246, 0.1); }
-        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .tool-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .tool-card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .gradient-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+<body class="bg-gray-50 font-sans">
 
-    <header class="gradient-bg text-white py-16 px-6 shadow-2xl text-center">
-        <h1 class="text-6xl font-black mb-4">GoyalBox</h1>
-        <p class="text-blue-100 text-xl max-w-2xl mx-auto">Duniya ke 500+ behtareen AI aur Daily Use Tools - Sab kuch bilkul Free!</p>
+    <header class="gradient-header text-white py-20 px-6 text-center shadow-2xl">
+        <h1 class="text-6xl font-black mb-4 tracking-tighter">GoyalBox</h1>
+        <p class="text-blue-100 text-xl max-w-2xl mx-auto mb-10 font-medium">Duniya ke 500+ behtareen AI aur Daily Use Tools - Sab kuch Free!</p>
         
-        <div class="mt-10 max-w-3xl mx-auto relative">
-            <input type="text" id="toolSearch" onkeyup="searchTools()" placeholder="Search from 500+ tools (e.g. AI Content, Case Converter)..." 
-                   class="w-full p-6 pl-14 rounded-3xl text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-2xl text-lg">
-            <i class="fa fa-search absolute left-6 top-7 text-gray-400 text-xl"></i>
+        <div class="max-w-3xl mx-auto relative group">
+            <input type="text" id="toolSearch" onkeyup="searchTools()" 
+                   placeholder="Search 500+ tools (e.g. AI Content, Case Converter)..." 
+                   class="w-full p-6 pl-16 rounded-3xl text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-2xl text-lg transition-all">
+            <i class="fa fa-search absolute left-6 top-7 text-gray-400 text-xl group-focus-within:text-blue-600"></i>
         </div>
     </header>
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50 overflow-x-auto whitespace-nowrap py-4 px-6 border-b">
-        <div class="container mx-auto flex gap-4">
-            <button onclick="filterCategory('All')" class="px-6 py-2 rounded-full bg-blue-600 text-white font-bold">All Tools</button>
-            <button onclick="filterCategory('AI Tools')" class="px-6 py-2 rounded-full hover:bg-gray-100 font-medium">AI Lab</button>
-            <button onclick="filterCategory('Text')" class="px-6 py-2 rounded-full hover:bg-gray-100 font-medium">Text Tools</button>
-            <button onclick="filterCategory('Developer')" class="px-6 py-2 rounded-full hover:bg-gray-100 font-medium">Dev Tools</button>
-            <button onclick="filterCategory('Utility')" class="px-6 py-2 rounded-full hover:bg-gray-100 font-medium">Utilities</button>
+    <nav class="bg-white shadow-md sticky top-0 z-50 border-b overflow-x-auto">
+        <div class="container mx-auto flex justify-center gap-2 py-4 px-6">
+            <button onclick="filterCategory('All')" class="cat-btn px-6 py-2 rounded-full bg-blue-600 text-white font-bold transition">All Tools</button>
+            <button onclick="filterCategory('AI Tools')" class="cat-btn px-6 py-2 rounded-full hover:bg-blue-50 text-gray-600 font-semibold transition">AI Lab</button>
+            <button onclick="filterCategory('Text')" class="cat-btn px-6 py-2 rounded-full hover:bg-blue-50 text-gray-600 font-semibold transition">Text</button>
+            <button onclick="filterCategory('Developer')" class="cat-btn px-6 py-2 rounded-full hover:bg-blue-50 text-gray-600 font-semibold transition">Dev Tools</button>
+            <button onclick="filterCategory('Utility')" class="cat-btn px-6 py-2 rounded-full hover:bg-blue-50 text-gray-600 font-semibold transition">Utilities</button>
+            <button onclick="filterCategory('Finance')" class="cat-btn px-6 py-2 rounded-full hover:bg-blue-50 text-gray-600 font-semibold transition">Finance</button>
         </div>
     </nav>
 
     <main class="container mx-auto px-6 py-12">
-        <div class="flex justify-between items-center mb-10">
-            <h2 id="categoryTitle" class="text-3xl font-bold text-gray-800 tracking-tight">Featured Tools</h2>
-            <span id="toolCount" class="bg-blue-100 text-blue-700 px-5 py-2 rounded-2xl font-bold text-sm"></span>
+        <div class="flex justify-between items-center mb-10 border-b pb-4">
+            <h2 id="currentCategory" class="text-3xl font-black text-gray-800">Featured Tools</h2>
+            <span id="toolCountBadge" class="bg-blue-100 text-blue-700 px-4 py-1 rounded-lg font-bold"></span>
         </div>
-        
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="toolsGrid">
             </div>
 
-        <div id="noResults" class="hidden text-center py-24">
-            <i class="fa fa-search-minus text-7xl text-gray-200 mb-6"></i>
-            <p class="text-2xl text-gray-400">Bhai, ye tool abhi hamare box mein nahi hai!</p>
+        <div id="loadMoreContainer" class="text-center mt-16 hidden">
+            <button onclick="loadMore()" class="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-10 py-4 rounded-2xl font-black text-lg transition-all shadow-lg">
+                Explore More Tools <i class="fa fa-plus ml-2"></i>
+            </button>
+        </div>
+
+        <div id="noResults" class="hidden text-center py-20">
+            <i class="fa fa-ghost text-7xl text-gray-200 mb-4"></i>
+            <p class="text-2xl text-gray-400 font-medium font-hindi">Bhai, ye tool abhi hamare box mein nahi hai!</p>
         </div>
     </main>
 
-    <footer class="bg-white border-t border-gray-200 py-16 mt-20">
-        <div class="container mx-auto text-center">
-            <div class="text-3xl font-black text-blue-600 mb-6">GoyalBox</div>
-            <p class="text-gray-500 max-w-md mx-auto mb-8 text-sm">Har roz naye tools add kiye jaate hain. Agar aapko koi specific tool chahiye toh humein batayein.</p>
-            <p class="text-gray-400 text-xs tracking-widest uppercase">&copy; 2026 GoyalBox. Build with ❤️ for the community.</p>
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-4xl font-black text-blue-400 mb-4 tracking-tighter">GoyalBox</div>
+            <p class="text-gray-400 mb-8 max-w-md mx-auto">Made by Goyal with ❤️ for everyone. Sabhi premium tools ab aapke fingertips par.</p>
+            <div class="flex justify-center gap-6 text-2xl mb-10 text-gray-500">
+                <a href="#" class="hover:text-white"><i class="fab fa-github"></i></a>
+                <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-gray-600 text-xs uppercase tracking-widest">&copy; 2026 GoyalBox.com - All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Tools Ka Data (Array)
+        // --- 500 TOOLS DATABASE ---
+        // Bhai, yahan aap 500 lines tak add kar sakte ho
         const allTools = [
-            { id: "case-converter", title: "Case Converter", category: "Text", icon: "fa-font", description: "UPPERCASE, lowercase aur Sentence case mein badlein.", isAI: false },
-            { id: "ai-writer", title: "AI Content Writer", category: "AI Tools", icon: "fa-robot", description: "AI se blog aur articles likhwayein.", isAI: true },
-            { id: "word-counter", title: "Word Counter", category: "Text", icon: "fa-calculator", description: "Words aur characters ki ginti karein.", isAI: false },
-            { id: "password-gen", title: "Password Generator", category: "Security", icon: "fa-lock", description: "Super strong passwords banayein.", isAI: false },
-            { id: "unit-converter", title: "Unit Converter", category: "Utility", icon: "fa-ruler-combined", description: "Weight, Length aur Speed convert karein.", isAI: false },
-            { id: "ai-image-gen", title: "AI Image Creator", category: "AI Tools", icon: "fa-magic", description: "Text se mast images banayein.", isAI: true },
-            { id: "json-format", title: "JSON Formatter", category: "Developer", icon: "fa-code", description: "JSON data ko sundar banayein.", isAI: false },
-            { id: "qr-gen", title: "QR Code Maker", category: "Utility", icon: "fa-qrcode", description: "Instant QR codes generate karein.", isAI: false },
-            { id: "ai-grammar", title: "AI Grammar Fixer", category: "AI Tools", icon: "fa-spell-check", description: "Mistakes theek karein AI ke saath.", isAI: true },
-            { id: "color-pick", title: "Color Picker", category: "Developer", icon: "fa-palette", description: "Design ke liye best colors choose karein.", isAI: false },
-            { id: "whatsapp-link", title: "WA Link Generator", category: "Utility", icon: "fa-whatsapp", description: "Bina number save kiye chat link banayein.", isAI: false },
-            { id: "yt-thumb", title: "YT Thumbnail", category: "Utility", icon: "fa-youtube", description: "YouTube videos ke thumbnail download karein.", isAI: false },
-            { id: "lorem-gen", title: "Lorem Ipsum", category: "Developer", icon: "fa-paragraph", description: "Demo text generate karein.", isAI: false },
-            { id: "ai-code-fix", title: "AI Code Fixer", category: "AI Tools", icon: "fa-terminal", description: "Coding ki galtiyan AI se sudharein.", isAI: true },
-            { id: "binary-tool", title: "Text to Binary", category: "Developer", icon: "fa-microchip", description: "Text ko 0101 code mein badlein.", isAI: false },
-            { id: "age-calc", title: "Age Calculator", category: "Utility", icon: "fa-calendar", description: "Apni sahi umar aur birthday jaanein.", isAI: false },
-            { id: "base64", title: "Base64 Encoder", category: "Developer", icon: "fa-link", description: "Text ko Base64 format mein badlein.", isAI: false },
-            { id: "ai-seo", title: "AI SEO Tags", category: "AI Tools", icon: "fa-search", description: "Website ke liye meta tags generate karein.", isAI: true },
-            { id: "md5-gen", title: "MD5 Generator", category: "Security", icon: "fa-hashtag", description: "Secure MD5 hash banayein.", isAI: false },
-            { id: "image-to-webp", title: "Image to WebP", category: "Developer", icon: "fa-file-image", description: "Photos ko webp format mein badlein.", isAI: false }
-            // Aap aise hi 500 tools add kar sakte ho...
+            { id: "case-converter", title: "Case Converter", category: "Text", icon: "fa-font", description: "UPPERCASE aur lowercase converter.", isAI: false },
+            { id: "ai-writer", title: "AI Content Writer", category: "AI Tools", icon: "fa-robot", description: "AI se articles aur blogs likhwayein.", isAI: true },
+            { id: "word-counter", title: "Word Counter", category: "Text", icon: "fa-calculator", description: "Words aur characters count karein.", isAI: false },
+            { id: "password-gen", title: "Password Generator", category: "Security", icon: "fa-lock", description: "Secure passwords generate karein.", isAI: false },
+            { id: "unit-converter", title: "Unit Converter", category: "Utility", icon: "fa-ruler", description: "KM, Miles, KG convert karein.", isAI: false },
+            { id: "ai-image-gen", "title": "AI Image Creator", "category": "AI Tools", "icon": "fa-magic", "description": "Text se mast images banayein.", "isAI": true },
+            { id: "qr-gen", "title": "QR Code Maker", "category": "Utility", "icon": "fa-qrcode", "description": "Instant QR codes banayein.", "isAI": false },
+            { id: "json-format", "title": "JSON Formatter", "category": "Developer", "icon": "fa-code", "description": "JSON ko readable banayein.", "isAI": false },
+            { id: "ai-grammar", "title": "AI Grammar Fixer", "category": "AI Tools", "icon": "fa-spell-check", "description": "Grammar theek karein AI se.", "isAI": true },
+            { id: "yt-thumb", "title": "YT Thumbnail", "category": "Utility", "icon": "fa-youtube", "description": "YouTube thumbnails download karein.", "isAI": false },
+            { id: "bmi-calc", "title": "BMI Calculator", "category": "Utility", "icon": "fa-heartbeat", "description": "Health aur fitness check karein.", "isAI": false },
+            { id: "ai-poem", "title": "AI Poem Writer", "category": "AI Tools", "icon": "fa-feather", "description": "Shayari aur kavita likhwayein AI se.", "isAI": true },
+            { id: "wa-link", "title": "WA Link Maker", "category": "Utility", "icon": "fa-whatsapp", "description": "Bina number save kiye chat link banayein.", "isAI": false },
+            { id: "sip-calc", "title": "SIP Calculator", "category": "Finance", "icon": "fa-chart-line", "description": "Investments ke returns check karein.", "isAI": false },
+            { id: "lorem-gen", "title": "Lorem Ipsum", "category": "Developer", "icon": "fa-paragraph", "description": "Dummy text generate karein.", "isAI": false },
+            { id: "ai-code-fix", "title": "AI Code Fixer", "category": "AI Tools", "icon": "fa-terminal", "description": "Buggy code ko theek karein.", "isAI": true },
+            { id: "gst-calc", "title": "GST Calculator", "category": "Finance", "icon": "fa-percent", "description": "Tax ki calculation karein.", "isAI": false },
+            { id: "image-to-webp", "title": "Image to WebP", "category": "Developer", "icon": "fa-file-image", "description": "Image size kam karein.", "isAI": false },
+            { id: "loan-emi", "title": "Loan EMI Calc", "category": "Finance", "icon": "fa-house-user", "description": "Monthly EMI check karein.", "isAI": false },
+            { id: "ai-seo", "title": "AI SEO Tags", "category": "AI Tools", "icon": "fa-search", "description": "Meta tags generator AI.", "isAI": true }
+            // Bhai, isi tarah 500 entries yahan paste kar dena...
         ];
 
-        function displayTools(tools) {
+        let currentFilteredTools = [...allTools];
+        let itemsToShow = 12; // Shuruat mein kitne dikhane hain
+
+        function displayTools() {
             const grid = document.getElementById('toolsGrid');
             const noResults = document.getElementById('noResults');
-            grid.innerHTML = "";
-            document.getElementById('toolCount').innerText = `${tools.length} Tools`;
+            const loadMoreBtn = document.getElementById('loadMoreContainer');
+            
+            const toolsToRender = currentFilteredTools.slice(0, itemsToShow);
+            
+            grid.innerHTML = toolsToRender.map(tool => `
+                <div class="tool-card bg-white p-8 rounded-[2rem] border border-gray-100 flex flex-col h-full cursor-pointer" onclick="openTool('${tool.id}')">
+                    <div class="w-16 h-16 flex items-center justify-center rounded-2xl ${tool.isAI ? 'bg-purple-100 text-purple-600' : 'bg-blue-50 text-blue-600'} text-3xl mb-6 shadow-inner">
+                        <i class="fa ${tool.icon}"></i>
+                    </div>
+                    <h3 class="font-black text-xl text-gray-800 mb-3">${tool.title}</h3>
+                    <p class="text-gray-500 text-sm flex-grow leading-relaxed">${tool.description}</p>
+                    <div class="mt-8 flex items-center text-xs font-black uppercase tracking-widest ${tool.isAI ? 'text-purple-600' : 'text-blue-600'}">
+                        Open Tool <i class="fa fa-arrow-right ml-2 text-[10px]"></i>
+                    </div>
+                </div>
+            `).join('');
 
-            if (tools.length === 0) {
-                noResults.classList.remove('hidden');
-                grid.classList.add('hidden');
-            } else {
-                noResults.classList.add('hidden');
-                grid.classList.remove('hidden');
-                
-                tools.forEach(tool => {
-                    const card = `
-                        <div class="tool-card bg-white p-8 rounded-3xl cursor-pointer flex flex-col h-full" onclick="alert('Tool Page: ${tool.id}')">
-                            <div class="w-16 h-16 flex items-center justify-center rounded-2xl ${tool.isAI ? 'bg-purple-100 text-purple-600' : 'bg-blue-50 text-blue-600'} text-3xl mb-6">
-                                <i class="fa ${tool.icon}"></i>
-                            </div>
-                            <h3 class="font-black text-xl text-gray-800 mb-3">${tool.title}</h3>
-                            <p class="text-gray-500 text-sm flex-grow leading-relaxed">${tool.description}</p>
-                            <div class="mt-8 flex items-center text-xs font-black uppercase tracking-widest ${tool.isAI ? 'text-purple-500' : 'text-blue-600'}">
-                                Launch Tool <i class="fa fa-chevron-right ml-2 text-[10px]"></i>
-                            </div>
-                        </div>
-                    `;
-                    grid.innerHTML += card;
-                });
-            }
+            // Handle No Results
+            noResults.classList.toggle('hidden', currentFilteredTools.length > 0);
+            grid.classList.toggle('hidden', currentFilteredTools.length === 0);
+
+            // Handle Load More
+            loadMoreBtn.classList.toggle('hidden', itemsToShow >= currentFilteredTools.length);
+            
+            document.getElementById('toolCountBadge').innerText = `${currentFilteredTools.length} Tools Found`;
+        }
+
+        function loadMore() {
+            itemsToShow += 12;
+            displayTools();
         }
 
         function searchTools() {
             const query = document.getElementById('toolSearch').value.toLowerCase();
-            const filtered = allTools.filter(t => t.title.toLowerCase().includes(query) || t.description.toLowerCase().includes(query));
-            displayTools(filtered);
+            currentFilteredTools = allTools.filter(t => t.title.toLowerCase().includes(query) || t.description.toLowerCase().includes(query));
+            itemsToShow = 12;
+            displayTools();
         }
 
         function filterCategory(cat) {
+            // Update UI buttons
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('hover:bg-blue-50', 'text-gray-600');
+            });
+            event.target.classList.add('bg-blue-600', 'text-white');
+
             if(cat === 'All') {
-                displayTools(allTools);
-                document.getElementById('categoryTitle').innerText = "Featured Tools";
+                currentFilteredTools = [...allTools];
+                document.getElementById('currentCategory').innerText = "Featured Tools";
             } else {
-                const filtered = allTools.filter(t => t.category === cat);
-                displayTools(filtered);
-                document.getElementById('categoryTitle').innerText = cat;
+                currentFilteredTools = allTools.filter(t => t.category === cat);
+                document.getElementById('currentCategory').innerText = cat;
             }
+            itemsToShow = 12;
+            displayTools();
         }
 
-        // Initial Load
-        displayTools(allTools);
+        function openTool(id) {
+            window.location.href = `tools/${id}.html`;
+        }
+
+        // Initialize
+        displayTools();
     </script>
 </body>
 </html>
