@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">GoyalBox - Loading Tool...</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans">
+
+    <nav class="bg-white shadow-sm py-4 px-6 border-b">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="../index.html" class="text-2xl font-black text-indigo-600">GoyalBox<span class="text-slate-800">.ai</span></a>
+            <a href="../index.html" class="text-slate-500 hover:text-indigo-600 font-bold"><i class="fa fa-arrow-left mr-2"></i> Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 max-w-4xl">
+        <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-slate-100">
+            <div class="bg-indigo-600 p-12 text-center text-white relative">
+                <div id="toolIconContainer" class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center text-4xl mx-auto mb-6">
+                    <i id="toolIcon" class="fa fa-robot"></i>
+                </div>
+                <h1 id="toolTitle" class="text-4xl font-black mb-4">Tool Name</h1>
+                <p id="toolDesc" class="text-indigo-100 text-lg opacity-90 font-medium">Loading tool description...</p>
+            </div>
+
+            <div class="p-10" id="toolInterface">
+                <div class="space-y-6">
+                    <label class="block text-slate-700 font-bold text-lg mb-2">Input Your Data:</label>
+                    <textarea id="userInput" rows="8" class="w-full p-6 border-2 border-slate-100 rounded-[2rem] focus:ring-4 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-lg transition-all" placeholder="Yahan apna text ya data daalein..."></textarea>
+                    
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="processTool()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-4 rounded-2xl font-black text-xl shadow-lg transition-all flex-grow">
+                            PROCESS NOW <i class="fa fa-magic ml-2"></i>
+                        </button>
+                        <button onclick="copyResult()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-8 py-4 rounded-2xl font-black text-xl transition-all">
+                            COPY <i class="fa fa-copy ml-2"></i>
+                        </button>
+                    </div>
+
+                    <div class="mt-10">
+                        <label class="block text-slate-700 font-bold text-lg mb-2">Result:</label>
+                        <div id="toolResult" class="w-full p-8 bg-slate-50 border-2 border-dashed border-slate-200 rounded-[2rem] min-h-[150px] text-lg text-slate-600 whitespace-pre-wrap">Output yahan dikhega...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 1. Tool ki Information fetch karna (Simulating Database)
+        const urlParams = new URLSearchParams(window.location.search);
+        const toolID = urlParams.get('id');
+
+        // Ye function check karega ki kaunsa tool khula hai
+        function initTool() {
+            if(!toolID) {
+                document.getElementById('toolTitle').innerText = "Tool Not Found";
+                return;
+            }
+            
+            // Bhai, yahan hum tool ke naam aur icon set karenge
+            // Asli project mein aap ise tools.json se fetch karoge
+            document.getElementById('toolTitle').innerText = toolID.replace(/-/g, ' ').toUpperCase();
+            document.getElementById('pageTitle').innerText = "GoyalBox - " + toolID;
+        }
+
+        // 2. Main Logic Function
+        function processTool() {
+            const input = document.getElementById('userInput').value;
+            let result = "";
+
+            // Simple example: Agar tool 'case-converter' hai
+            if(toolID.includes('case')) {
+                result = input.toUpperCase();
+            } 
+            else if(toolID.includes('reverse')) {
+                result = input.split('').reverse().join('');
+            }
+            else if(toolID.includes('word-counter')) {
+                const words = input.trim().split(/\s+/).length;
+                result = `Total Words: ${words}\nTotal Characters: ${input.length}`;
+            }
+            else {
+                result = "AI Processing: " + input + "\n(Bhai, is tool ka backend connect ho raha hai...)";
+            }
+
+            document.getElementById('toolResult').innerText = result;
+        }
+
+        function copyResult() {
+            const text = document.getElementById('toolResult').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Copied to clipboard!");
+        }
+
+        window.onload = initTool;
+    </script>
+</body>
+</html>
