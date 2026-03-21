@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoyalBox - 200+ Premium AI & Digital Tools</title>
+    <title>GoyalBox - 200+ Premium AI & Utility Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .tool-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #e5e7eb; }
+        .tool-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #e5e7eb; cursor: pointer; }
         .tool-card:hover { transform: translateY(-12px); border-color: #6366f1; box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25); }
         .hero-mesh { background: radial-gradient(at 0% 0%, #1e1b4b 0, transparent 50%), radial-gradient(at 100% 0%, #312e81 0, transparent 50%), radial-gradient(at 100% 100%, #1e1b4b 0, transparent 50%), radial-gradient(at 0% 100%, #4338ca 0, transparent 50%); background-color: #0f172a; }
         .ai-gradient { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
@@ -21,8 +21,8 @@
 
     <header class="hero-mesh text-white py-28 px-6 text-center relative overflow-hidden">
         <div class="relative z-10">
-            <h1 class="text-7xl font-extrabold mb-6 tracking-tighter">GoyalBox<span class="text-indigo-400">.ai</span></h1>
-            <p class="text-indigo-100 text-xl max-w-2xl mx-auto mb-12 font-medium opacity-90">Unlock 200+ Unique AI Labs & Professional Digital Utilities</p>
+            <h1 class="text-7xl font-black mb-6 tracking-tighter">GoyalBox<span class="text-indigo-400">.ai</span></h1>
+            <p class="text-indigo-100 text-xl max-w-2xl mx-auto mb-12 font-medium">India's Largest Hub for 200+ Unique AI & Digital Tools</p>
             
             <div class="max-w-3xl mx-auto relative group">
                 <input type="text" id="toolSearch" onkeyup="searchTools()" 
@@ -46,11 +46,8 @@
 
     <main class="container mx-auto px-6 py-20">
         <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
-            <div>
-                <h2 id="categoryTitle" class="text-4xl font-extrabold text-slate-900 tracking-tight">Featured Tools</h2>
-                <p class="text-slate-500 mt-2 font-medium">Explore our handpicked collection of 200+ unique tools.</p>
-            </div>
-            <div class="bg-indigo-900 text-indigo-100 px-8 py-3 rounded-2xl font-black text-xl shadow-xl flex items-center gap-3">
+            <h2 id="categoryTitle" class="text-4xl font-extrabold text-slate-900 tracking-tight">Featured Tools</h2>
+            <div class="bg-indigo-900 text-indigo-100 px-8 py-3 rounded-2xl font-black text-xl shadow-xl flex items-center gap-3 italic">
                 <i class="fa fa-bolt-lightning text-yellow-400"></i>
                 <span id="toolCount">0</span> TOOLS LIVE
             </div>
@@ -67,56 +64,39 @@
     </main>
 
     <footer class="bg-slate-950 text-white py-24 text-center">
-        <div class="text-5xl font-black text-transparent bg-clip-text bg-indigo-400 mb-6 tracking-tighter">GoyalBox</div>
-        <p class="text-slate-400 max-w-lg mx-auto mb-12 px-6 text-lg">One-stop repository for 200+ unique tools. Simplifying your digital life one tool at a time.</p>
-        <p class="text-slate-700 text-sm font-bold tracking-widest uppercase">&copy; 2026 GOYALBOX.COM | PREMIUM TOOLS HUB</p>
+        <div class="text-5xl font-black text-indigo-400 mb-6 tracking-tighter">GoyalBox</div>
+        <p class="text-slate-400 max-w-lg mx-auto mb-12 px-6 text-lg">Built for speed, simplicity, and efficiency.</p>
+        <p class="text-slate-700 text-sm font-bold tracking-widest uppercase">&copy; 2026 GOYALBOX.COM</p>
     </footer>
 
     <script>
         const allTools = [];
 
-        // --- 1. AI TOOLS (60 UNIQUE) ---
-        const aiSubjects = ["Blog", "Article", "Email", "Story", "Poem", "Lyrics", "Slogan", "Startup", "Resume", "SEO", "Script", "Grammar", "Joke", "Recipe", "Code", "Caption", "Essay", "Headline", "LinkedIn", "Twitter"];
-        const aiTypes = ["Generator", "Writer", "Pro", "Wizard", "Fixer", "Bot", "Assistant"];
+        // 1. GENERATE AI TOOLS (60)
+        const subjects = ["Blog", "Email", "Code", "SEO", "Poem", "Lyrics", "Script", "Slogan", "Resume", "Joke"];
         for(let i=1; i<=60; i++) {
-            let sub = aiSubjects[i % aiSubjects.length];
-            let type = aiTypes[i % aiTypes.length];
-            allTools.push({
-                id: `ai-${i}`,
-                title: `AI ${sub} ${type}`,
-                category: "AI Tools",
-                icon: "fa-robot",
-                description: `Unlock next-gen power for ${sub.toLowerCase()} using advanced AI algorithms.`,
-                isAI: true
-            });
+            let s = subjects[i % subjects.length];
+            allTools.push({ id: `ai-${i}`, title: `AI ${s} Writer`, category: "AI Tools", icon: "fa-robot", description: `High-quality ${s.toLowerCase()} generated by AI.`, isAI: true });
         }
 
-        // --- 2. TEXT TOOLS (35 UNIQUE) ---
-        const textNames = ["Case Converter", "Word Counter", "Text Reverse", "Slug Maker", "Space Cleaner", "Binary Text", "ASCII Art", "Lipsum Maker", "Line Sorter", "Dupe Finder", "Invisible Text", "Text to Speech"];
+        // 2. TEXT TOOLS (35)
         for(let i=1; i<=35; i++) {
-            let name = textNames[i % textNames.length];
-            allTools.push({ id: `text-${i}`, title: `${name} #${i}`, category: "Text", icon: "fa-font", description: "Professional grade text processing and formatting utility.", isAI: false });
+            allTools.push({ id: `text-${i}`, title: `Text Tool #${i}`, category: "Text", icon: "fa-font", description: "Advanced text manipulation and formatting.", isAI: false });
         }
 
-        // --- 3. DEVELOPER TOOLS (35 UNIQUE) ---
-        const devNames = ["JSON Format", "HTML Mini", "CSS Beauty", "JS Obfuscate", "Meta Tag Gen", "Favicon Maker", "Base64 Encode", "MD5 Hash", "Regex Test", "XML Check"];
+        // 3. DEVELOPER TOOLS (35)
         for(let i=1; i<=35; i++) {
-            let name = devNames[i % devNames.length];
-            allTools.push({ id: `dev-${i}`, title: `${name} #${i}`, category: "Developer", icon: "fa-code", description: "Essential developer utility for debugging and optimization.", isAI: false });
+            allTools.push({ id: `dev-${i}`, title: `Dev Tool #${i}`, category: "Developer", icon: "fa-code", description: "Developer utilities for daily tasks.", isAI: false });
         }
 
-        // --- 4. UTILITY TOOLS (35 UNIQUE) ---
-        const utilNames = ["QR Maker", "Age Calculator", "WA Link Pro", "Pass Gen", "Unit Conv", "BMR Tracker", "Fuel Calc", "Color Picker", "Dice Roller", "Coin Flip"];
+        // 4. UTILITY TOOLS (35)
         for(let i=1; i<=35; i++) {
-            let name = utilNames[i % utilNames.length];
-            allTools.push({ id: `util-${i}`, title: `${name} #${i}`, category: "Utility", icon: "fa-toolbox", description: "Reliable and fast day-to-day essential utility tool.", isAI: false });
+            allTools.push({ id: `util-${i}`, title: `Utility #${i}`, category: "Utility", icon: "fa-toolbox", description: "Smart digital essential utility.", isAI: false });
         }
 
-        // --- 5. FINANCE TOOLS (35 UNIQUE) ---
-        const finNames = ["GST Calc", "SIP Planner", "EMI Calc", "FD Interest", "Inflation Check", "Margin Calc", "Loan Estimator", "Investment Pro"];
+        // 5. FINANCE TOOLS (35)
         for(let i=1; i<=35; i++) {
-            let name = finNames[i % finNames.length];
-            allTools.push({ id: `fin-${i}`, title: `${name} #${i}`, category: "Finance", icon: "fa-calculator", description: "Smart financial calculator for precision money management.", isAI: false });
+            allTools.push({ id: `fin-${i}`, title: `Finance #${i}`, category: "Finance", icon: "fa-calculator", description: "Precision financial calculator.", isAI: false });
         }
 
         let currentTools = [...allTools];
@@ -127,7 +107,7 @@
             const data = currentTools.slice(0, visibleItems);
             
             grid.innerHTML = data.map(t => `
-                <div class="tool-card bg-white p-10 rounded-[3rem] flex flex-col h-full cursor-pointer" onclick="location.href='tools/${t.id}.html'">
+                <div class="tool-card bg-white p-10 rounded-[3rem] flex flex-col h-full" onclick="location.href='tool-template.html?id=${t.id}'">
                     <div class="w-20 h-20 flex items-center justify-center rounded-3xl ${t.isAI ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-600'} text-4xl mb-8 relative shadow-inner">
                         <i class="fa ${t.icon}"></i>
                         ${t.isAI ? '<span class="absolute -top-3 -right-6 ai-gradient text-[10px] text-white font-black px-3 py-1.5 rounded-lg shadow-lg">AI PRO</span>' : ''}
@@ -135,7 +115,7 @@
                     <h3 class="font-extrabold text-2xl text-slate-900 mb-4 tracking-tight">${t.title}</h3>
                     <p class="text-slate-500 text-sm flex-grow leading-relaxed font-medium">${t.description}</p>
                     <div class="mt-10 flex items-center text-xs font-black uppercase tracking-[0.2em] ${t.isAI ? 'text-indigo-600' : 'text-slate-400'}">
-                        Launch System <i class="fa fa-arrow-right ml-2 text-[10px]"></i>
+                        Open Tool <i class="fa fa-arrow-right ml-2 text-[10px]"></i>
                     </div>
                 </div>
             `).join('');
@@ -148,7 +128,7 @@
 
         function searchTools() {
             const q = document.getElementById('toolSearch').value.toLowerCase();
-            currentTools = allTools.filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q));
+            currentTools = allTools.filter(t => t.title.toLowerCase().includes(q));
             visibleItems = 12;
             render();
         }
