@@ -3,56 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoyalBox - 200+ Premium AI & Utility Tools</title>
+    <title>GoyalBox - 200+ Premium AI & Digital Tools</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .tool-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #e2e8f0; }
-        .tool-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25); border-color: #3b82f6; }
-        .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); }
-        .ai-badge { background: linear-gradient(90deg, #8b5cf6, #d946ef); }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tool-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #e5e7eb; }
+        .tool-card:hover { transform: translateY(-12px); border-color: #6366f1; box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25); }
+        .hero-mesh { background: radial-gradient(at 0% 0%, #1e1b4b 0, transparent 50%), radial-gradient(at 100% 0%, #312e81 0, transparent 50%), radial-gradient(at 100% 100%, #1e1b4b 0, transparent 50%), radial-gradient(at 0% 100%, #4338ca 0, transparent 50%); background-color: #0f172a; }
+        .ai-gradient { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-slate-50">
+<body class="bg-slate-50 text-slate-900">
 
-    <header class="hero-gradient text-white py-24 px-6 text-center shadow-2xl relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <div class="absolute top-10 left-10 w-64 h-64 bg-blue-400 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-10 right-10 w-64 h-64 bg-purple-500 rounded-full blur-3xl"></div>
-        </div>
-        
-        <h1 class="text-7xl font-black mb-4 tracking-tighter">GoyalBox<span class="text-blue-400">.ai</span></h1>
-        <p class="text-blue-100 text-xl max-w-2xl mx-auto mb-10 font-medium">India's Largest Hub for 200+ Unique AI & Digital Tools</p>
-        
-        <div class="max-w-3xl mx-auto relative group">
-            <input type="text" id="toolSearch" onkeyup="searchTools()" 
-                   placeholder="Search 200+ tools (e.g. AI Writer, GST, JSON)..." 
-                   class="w-full p-6 pl-16 rounded-[2rem] text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-2xl text-lg transition-all">
-            <i class="fa fa-search absolute left-7 top-7 text-gray-400 text-xl group-focus-within:text-blue-600"></i>
+    <header class="hero-mesh text-white py-28 px-6 text-center relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-7xl font-extrabold mb-6 tracking-tighter">GoyalBox<span class="text-indigo-400">.ai</span></h1>
+            <p class="text-indigo-100 text-xl max-w-2xl mx-auto mb-12 font-medium opacity-90">Unlock 200+ Unique AI Labs & Professional Digital Utilities</p>
+            
+            <div class="max-w-3xl mx-auto relative group">
+                <input type="text" id="toolSearch" onkeyup="searchTools()" 
+                       placeholder="Search from 200+ unique tools..." 
+                       class="w-full p-7 pl-16 rounded-[2.5rem] text-slate-800 focus:outline-none focus:ring-4 focus:ring-indigo-500 shadow-2xl text-lg transition-all border-none">
+                <i class="fa fa-search absolute left-7 top-8 text-slate-400 text-xl group-focus-within:text-indigo-600 transition"></i>
+            </div>
         </div>
     </header>
 
-    <nav class="bg-white shadow-lg sticky top-0 z-50 border-b overflow-x-auto">
+    <nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-slate-200 overflow-x-auto">
         <div class="container mx-auto flex justify-center gap-3 py-5 px-6 min-w-max">
-            <button onclick="filterCategory('All')" class="cat-btn px-8 py-2.5 rounded-full bg-blue-600 text-white font-bold shadow-md transition">All Tools</button>
-            <button onclick="filterCategory('AI Tools')" class="cat-btn px-8 py-2.5 rounded-full border border-purple-200 text-purple-600 font-bold hover:bg-purple-50 transition">✨ AI Lab</button>
-            <button onclick="filterCategory('Text')" class="cat-btn px-8 py-2.5 rounded-full border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition">Text</button>
-            <button onclick="filterCategory('Developer')" class="cat-btn px-8 py-2.5 rounded-full border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition">Developer</button>
-            <button onclick="filterCategory('Utility')" class="cat-btn px-8 py-2.5 rounded-full border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition">Utility</button>
-            <button onclick="filterCategory('Finance')" class="cat-btn px-8 py-2.5 rounded-full border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 transition">Finance</button>
+            <button onclick="filterCategory('All')" class="cat-btn px-8 py-2.5 rounded-full bg-indigo-600 text-white font-bold shadow-lg transition-all">All Tools</button>
+            <button onclick="filterCategory('AI Tools')" class="cat-btn px-8 py-2.5 rounded-full border-2 border-purple-200 text-purple-700 font-bold hover:bg-purple-50 transition-all italic">✨ AI Lab</button>
+            <button onclick="filterCategory('Text')" class="cat-btn px-8 py-2.5 rounded-full border-2 border-slate-100 text-slate-600 font-bold hover:bg-slate-50 transition-all">Text</button>
+            <button onclick="filterCategory('Developer')" class="cat-btn px-8 py-2.5 rounded-full border-2 border-slate-100 text-slate-600 font-bold hover:bg-slate-50 transition-all">Developer</button>
+            <button onclick="filterCategory('Utility')" class="cat-btn px-8 py-2.5 rounded-full border-2 border-slate-100 text-slate-600 font-bold hover:bg-slate-50 transition-all">Utility</button>
+            <button onclick="filterCategory('Finance')" class="cat-btn px-8 py-2.5 rounded-full border-2 border-slate-100 text-slate-600 font-bold hover:bg-slate-50 transition-all">Finance</button>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 py-16">
-        <div class="flex justify-between items-center mb-12 border-b border-slate-200 pb-8">
-            <h2 id="categoryTitle" class="text-4xl font-black text-slate-800 uppercase tracking-tight">Featured Tools</h2>
-            <div class="bg-slate-900 text-white px-6 py-2.5 rounded-2xl font-black text-lg shadow-xl italic">
-                <span id="toolCount">0</span> Tools Found
+    <main class="container mx-auto px-6 py-20">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+            <div>
+                <h2 id="categoryTitle" class="text-4xl font-extrabold text-slate-900 tracking-tight">Featured Tools</h2>
+                <p class="text-slate-500 mt-2 font-medium">Explore our handpicked collection of 200+ unique tools.</p>
+            </div>
+            <div class="bg-indigo-900 text-indigo-100 px-8 py-3 rounded-2xl font-black text-xl shadow-xl flex items-center gap-3">
+                <i class="fa fa-bolt-lightning text-yellow-400"></i>
+                <span id="toolCount">0</span> TOOLS LIVE
             </div>
         </div>
 
@@ -60,155 +60,114 @@
             </div>
 
         <div id="loadMoreSection" class="text-center mt-24">
-            <button onclick="loadMore()" class="bg-white border-4 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white px-16 py-5 rounded-[2rem] font-black text-2xl transition-all shadow-2xl group">
-                LOAD MORE <i class="fa fa-chevron-down ml-3 group-hover:translate-y-1 transition"></i>
+            <button onclick="loadMore()" class="bg-white border-[3px] border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white px-16 py-5 rounded-[2.5rem] font-extrabold text-2xl transition-all shadow-xl group">
+                EXPLORE MORE <i class="fa fa-chevron-down ml-3 group-hover:translate-y-1 transition"></i>
             </button>
         </div>
     </main>
 
-    <footer class="bg-slate-950 text-white py-20 text-center">
-        <div class="text-5xl font-black text-blue-500 mb-6 tracking-tighter">GoyalBox</div>
-        <p class="text-slate-400 max-w-lg mx-auto mb-10 px-6 font-medium">The most powerful all-in-one digital toolkit for the modern age. Built for speed and simplicity.</p>
-        <div class="flex justify-center gap-8 mb-12 text-3xl text-slate-600">
-            <a href="#" class="hover:text-white transition"><i class="fab fa-github"></i></a>
-            <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p class="text-slate-700 text-sm uppercase tracking-[0.3em] font-bold">&copy; 2026 GoyalBox.com - Unleash Your Potential</p>
+    <footer class="bg-slate-950 text-white py-24 text-center">
+        <div class="text-5xl font-black text-transparent bg-clip-text bg-indigo-400 mb-6 tracking-tighter">GoyalBox</div>
+        <p class="text-slate-400 max-w-lg mx-auto mb-12 px-6 text-lg">One-stop repository for 200+ unique tools. Simplifying your digital life one tool at a time.</p>
+        <p class="text-slate-700 text-sm font-bold tracking-widest uppercase">&copy; 2026 GOYALBOX.COM | PREMIUM TOOLS HUB</p>
     </footer>
 
     <script>
         const allTools = [];
 
-        // --- 1. GENERATE 60 UNIQUE AI TOOLS ---
-        const aiTypes = ["Writer", "Summarizer", "Generator", "Optimizer", "Assistant", "Fixer", "Bot", "Pro", "Expert", "Wizard"];
-        const aiSubjects = ["Blog", "Email", "Code", "SEO", "Poem", "Lyrics", "Script", "Startup", "Essay", "Slogan", "Resume", "Headline", "Grammar", "Joke", "Math", "History", "Physics", "Chemistry", "Cooking", "Workout"];
-        
+        // --- 1. AI TOOLS (60 UNIQUE) ---
+        const aiSubjects = ["Blog", "Article", "Email", "Story", "Poem", "Lyrics", "Slogan", "Startup", "Resume", "SEO", "Script", "Grammar", "Joke", "Recipe", "Code", "Caption", "Essay", "Headline", "LinkedIn", "Twitter"];
+        const aiTypes = ["Generator", "Writer", "Pro", "Wizard", "Fixer", "Bot", "Assistant"];
         for(let i=1; i<=60; i++) {
             let sub = aiSubjects[i % aiSubjects.length];
             let type = aiTypes[i % aiTypes.length];
             allTools.push({
-                id: `ai-tool-${i}`,
+                id: `ai-${i}`,
                 title: `AI ${sub} ${type}`,
                 category: "AI Tools",
                 icon: "fa-robot",
-                description: `Next-gen artificial intelligence for your ${sub.toLowerCase()} needs.`,
+                description: `Unlock next-gen power for ${sub.toLowerCase()} using advanced AI algorithms.`,
                 isAI: true
             });
         }
 
-        // --- 2. GENERATE 35 UNIQUE TEXT TOOLS ---
-        const textNames = ["Case Converter", "Word Counter", "Text Reverser", "Slug Generator", "Space Remover", "Binary Converter", "ASCII Maker", "Lipsum Generator", "Line Sorter", "Dupe Remover", "Invisible Text", "Text to Speech"];
+        // --- 2. TEXT TOOLS (35 UNIQUE) ---
+        const textNames = ["Case Converter", "Word Counter", "Text Reverse", "Slug Maker", "Space Cleaner", "Binary Text", "ASCII Art", "Lipsum Maker", "Line Sorter", "Dupe Finder", "Invisible Text", "Text to Speech"];
         for(let i=1; i<=35; i++) {
             let name = textNames[i % textNames.length];
-            allTools.push({
-                id: `text-tool-${i}`,
-                title: `${name} #${i}`,
-                category: "Text",
-                icon: "fa-font",
-                description: "Professional grade text manipulation and formatting tool.",
-                isAI: false
-            });
+            allTools.push({ id: `text-${i}`, title: `${name} #${i}`, category: "Text", icon: "fa-font", description: "Professional grade text processing and formatting utility.", isAI: false });
         }
 
-        // --- 3. GENERATE 35 UNIQUE DEVELOPER TOOLS ---
-        const devNames = ["JSON Formatter", "HTML Minifier", "CSS Beautifier", "JS Obfuscator", "Meta Tag Gen", "Favicon Maker", "Base64 Encoder", "MD5 Hasher", "Regex Tester", "XML Validator"];
+        // --- 3. DEVELOPER TOOLS (35 UNIQUE) ---
+        const devNames = ["JSON Format", "HTML Mini", "CSS Beauty", "JS Obfuscate", "Meta Tag Gen", "Favicon Maker", "Base64 Encode", "MD5 Hash", "Regex Test", "XML Check"];
         for(let i=1; i<=35; i++) {
             let name = devNames[i % devNames.length];
-            allTools.push({
-                id: `dev-tool-${i}`,
-                title: `${name} #${i}`,
-                category: "Developer",
-                icon: "fa-code",
-                description: "Essential utilities for modern web developers and programmers.",
-                isAI: false
-            });
+            allTools.push({ id: `dev-${i}`, title: `${name} #${i}`, category: "Developer", icon: "fa-code", description: "Essential developer utility for debugging and optimization.", isAI: false });
         }
 
-        // --- 4. GENERATE 35 UNIQUE UTILITY TOOLS ---
-        const utilNames = ["QR Generator", "Age Calculator", "WA Link Maker", "Password Pro", "Unit Converter", "BMR Calc", "Fuel Cost", "Color Picker", "Dice Roller", "Coin Flip"];
+        // --- 4. UTILITY TOOLS (35 UNIQUE) ---
+        const utilNames = ["QR Maker", "Age Calculator", "WA Link Pro", "Pass Gen", "Unit Conv", "BMR Tracker", "Fuel Calc", "Color Picker", "Dice Roller", "Coin Flip"];
         for(let i=1; i<=35; i++) {
             let name = utilNames[i % utilNames.length];
-            allTools.push({
-                id: `util-tool-${i}`,
-                title: `${name} #${i}`,
-                category: "Utility",
-                icon: "fa-toolbox",
-                description: "Handy day-to-day tools to make your digital life easier.",
-                isAI: false
-            });
+            allTools.push({ id: `util-${i}`, title: `${name} #${i}`, category: "Utility", icon: "fa-toolbox", description: "Reliable and fast day-to-day essential utility tool.", isAI: false });
         }
 
-        // --- 5. GENERATE 35 UNIQUE FINANCE TOOLS ---
-        const finNames = ["GST Calculator", "SIP Planner", "EMI Calculator", "FD Interest", "Inflation Tool", "Margin Calc", "Loan Estimator", "Investment Check"];
+        // --- 5. FINANCE TOOLS (35 UNIQUE) ---
+        const finNames = ["GST Calc", "SIP Planner", "EMI Calc", "FD Interest", "Inflation Check", "Margin Calc", "Loan Estimator", "Investment Pro"];
         for(let i=1; i<=35; i++) {
             let name = finNames[i % finNames.length];
-            allTools.push({
-                id: `fin-tool-${i}`,
-                title: `${name} #${i}`,
-                category: "Finance",
-                icon: "fa-calculator",
-                description: "Smart financial calculations for better money management.",
-                isAI: false
-            });
+            allTools.push({ id: `fin-${i}`, title: `${name} #${i}`, category: "Finance", icon: "fa-calculator", description: "Smart financial calculator for precision money management.", isAI: false });
         }
 
-        // --- LOGIC ---
-        let filteredTools = [...allTools];
-        let itemsToShow = 12;
+        let currentTools = [...allTools];
+        let visibleItems = 12;
 
-        function renderTools() {
+        function render() {
             const grid = document.getElementById('toolsGrid');
-            const data = filteredTools.slice(0, itemsToShow);
+            const data = currentTools.slice(0, visibleItems);
             
             grid.innerHTML = data.map(t => `
                 <div class="tool-card bg-white p-10 rounded-[3rem] flex flex-col h-full cursor-pointer" onclick="location.href='tools/${t.id}.html'">
-                    <div class="w-16 h-16 flex items-center justify-center rounded-2xl ${t.isAI ? 'bg-purple-100 text-purple-600' : 'bg-blue-50 text-blue-600'} text-3xl mb-8 shadow-inner relative">
+                    <div class="w-20 h-20 flex items-center justify-center rounded-3xl ${t.isAI ? 'bg-indigo-100 text-indigo-600' : 'bg-slate-100 text-slate-600'} text-4xl mb-8 relative shadow-inner">
                         <i class="fa ${t.icon}"></i>
-                        ${t.isAI ? '<span class="absolute -top-3 -right-6 ai-badge text-[10px] text-white font-black px-2 py-1 rounded-md shadow-lg">AI PRO</span>' : ''}
+                        ${t.isAI ? '<span class="absolute -top-3 -right-6 ai-gradient text-[10px] text-white font-black px-3 py-1.5 rounded-lg shadow-lg">AI PRO</span>' : ''}
                     </div>
-                    <h3 class="font-black text-2xl text-slate-800 mb-3">${t.title}</h3>
+                    <h3 class="font-extrabold text-2xl text-slate-900 mb-4 tracking-tight">${t.title}</h3>
                     <p class="text-slate-500 text-sm flex-grow leading-relaxed font-medium">${t.description}</p>
-                    <div class="mt-10 flex items-center text-xs font-black uppercase tracking-widest ${t.isAI ? 'text-purple-600' : 'text-blue-600'}">
-                        Explore Tool <i class="fa fa-arrow-right ml-2 text-[10px]"></i>
+                    <div class="mt-10 flex items-center text-xs font-black uppercase tracking-[0.2em] ${t.isAI ? 'text-indigo-600' : 'text-slate-400'}">
+                        Launch System <i class="fa fa-arrow-right ml-2 text-[10px]"></i>
                     </div>
                 </div>
             `).join('');
 
-            document.getElementById('toolCount').innerText = filteredTools.length;
-            document.getElementById('loadMoreSection').classList.toggle('hidden', itemsToShow >= filteredTools.length);
+            document.getElementById('toolCount').innerText = currentTools.length;
+            document.getElementById('loadMoreSection').classList.toggle('hidden', visibleItems >= currentTools.length);
         }
 
-        function loadMore() {
-            itemsToShow += 12;
-            renderTools();
-        }
+        function loadMore() { visibleItems += 12; render(); }
 
         function searchTools() {
             const q = document.getElementById('toolSearch').value.toLowerCase();
-            filteredTools = allTools.filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q));
-            itemsToShow = 12;
-            renderTools();
+            currentTools = allTools.filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q));
+            visibleItems = 12;
+            render();
         }
 
         function filterCategory(cat) {
-            // Update button styles
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white');
-                btn.classList.add('border-gray-200', 'text-gray-600');
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
+                b.classList.add('border-slate-100', 'text-slate-600');
             });
-            event.target.classList.add('bg-blue-600', 'text-white');
-            event.target.classList.remove('border-gray-200', 'text-gray-600');
+            event.target.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
+            event.target.classList.remove('border-slate-100', 'text-slate-600');
 
-            // Filter logic
-            filteredTools = (cat === 'All') ? [...allTools] : allTools.filter(t => t.category === cat);
+            currentTools = (cat === 'All') ? [...allTools] : allTools.filter(t => t.category === cat);
             document.getElementById('categoryTitle').innerText = cat === 'All' ? 'Featured Tools' : cat;
-            itemsToShow = 12;
-            renderTools();
+            visibleItems = 12;
+            render();
         }
 
-        // Init
-        renderTools();
+        render();
     </script>
 </body>
 </html>
